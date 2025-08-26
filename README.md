@@ -20,8 +20,7 @@
 - Auto lock ssh multi login
 - Penambahan noobzvpns
 - Tuning profile pada server
-- Xray Core 
-- Penambahan fail2ban
+- Xray Core
 - Auto block sebagian ads indo by default
 - Auto clear log per 3 menit
 - Auto delete expired
