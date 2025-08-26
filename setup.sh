@@ -7,8 +7,6 @@ apt install jq -y
 apt install shc -y
 apt install dialog -y
 apt install at -y
-apt install pipx -y
-pipx install gdown
 
 
 NC='\033[0m'
@@ -97,15 +95,12 @@ if [[ ${ID} == "ubuntu" || ${ID} == "debian" ]]; then
 else
     echo -e " ${r}This Script only Support for OS"
     echo -e ""
-    echo -e " - ${y}Ubuntu 16.04${NC}"
-    echo -e " - ${y}Ubuntu 18.04${NC}"
     echo -e " - ${y}Ubuntu 20.04${NC}"
     echo -e " - ${y}Ubuntu 22.04${NC}"
     echo -e " - ${y}Ubuntu 24.04${NC}"
     echo -e " - ${y}Ubuntu 24.10${NC}"
     echo -e " - ${y}Ubuntu 25.04${NC}"
     echo ""
-    echo -e " - ${y}Debian 9${NC}"
     echo -e " - ${y}Debian 10${NC}"
     echo -e " - ${y}Debian 11${NC}"
     echo -e " - ${y}Debian 12${NC}"
@@ -114,20 +109,17 @@ else
     exit 0
 fi
 
-if [[ ${VERSION_ID} == "9" || ${VERSION_ID} == "10" || ${VERSION_ID} == "11" || ${VERSION_ID} == "12" || ${VERSION_ID} == "13" || ${VERSION_ID} == "16.04" || ${VERSION_ID} == "18.04" || ${VERSION_ID} == "20.04" || ${VERSION_ID} == "22.04" || ${VERSION_ID} == "24.04" || ${VERSION_ID} == "24.10" || ${VERSION_ID} == "25.04" ]]; then
+if [[ ${VERSION_ID} == "10" || ${VERSION_ID} == "11" || ${VERSION_ID} == "12" || ${VERSION_ID} == "13" || ${VERSION_ID} == "20.04" || ${VERSION_ID} == "22.04" || ${VERSION_ID} == "24.04" || ${VERSION_ID} == "24.10" || ${VERSION_ID} == "25.04" ]]; then
     echo -ne
 else
     echo -e " ${r}This Script only Support for OS"
     echo -e ""
-    echo -e " - ${y}Ubuntu 16.04${NC}"
-    echo -e " - ${y}Ubuntu 18.04${NC}"
     echo -e " - ${y}Ubuntu 20.04${NC}"
     echo -e " - ${y}Ubuntu 22.04${NC}"
     echo -e " - ${y}Ubuntu 24.04${NC}"
     echo -e " - ${y}Ubuntu 24.10${NC}"
     echo -e " - ${y}Ubuntu 25.04${NC}"
     echo ""
-    echo -e " - ${y}Debian 9${NC}"
     echo -e " - ${y}Debian 10${NC}"
     echo -e " - ${y}Debian 11${NC}"
     echo -e " - ${y}Debian 12${NC}"
@@ -677,7 +669,7 @@ gem install lolcat
 
 # Buat swap
 swapoff -a
-dd if=/dev/zero of=/swapfile bs=1M count=2048
+dd if=/dev/zero of=/swapfile bs=1M count=1024
 mkswap /swapfile
 chown root:root /swapfile
 chmod 0600 /swapfile >/dev/null 2>&1
@@ -1363,26 +1355,8 @@ clear
 
 insbkp() {
     apt install rclone -y
-    printf "q\n" | rclone config
-    mkdir -p /root/.config/rclone/
-    wget -O /root/.config/rclone/rclone.conf "https://cloud.agung-store.my.id/drive/rclone.conf"
-    pw="alsyazani"
-
-    if grep -q "U2FsdGVkX1" /root/.config/rclone/rclone.conf; then
-        echo "File rclone.conf terdeteksi terenkripsi, mencoba dekripsi..."
-
-        openssl enc -aes-256-cbc -d -base64 -pass pass:"$pw" -in /root/.config/rclone/rclone.conf -out /root/.config/rclone/rclone.conf.dec
-        
-        if [ $? -eq 0 ]; then
-            mv /root/.config/rclone/rclone.conf.dec /root/.config/rclone/rclone.conf
-            echo "rclone.conf berhasil didekripsi!"
-        else
-            echo "Gagal mendekripsi rclone.conf! Periksa file atau password."
-            exit 1
-        fi
-    else
-        echo "File rclone.conf tidak terenkripsi, menggunakan file asli."
-    fi
+printf "q\n" | rclone config
+wget -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/ryuvogsi/main/rclone.conf"
 
     git clone https://github.com/zhets/wondershaper.git
     cd wondershaper
