@@ -54,7 +54,7 @@ echo -e "${c}└─────────────────────�
 apt update
 data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 date_list=$(date +"%Y-%m-%d" -d "$data_server")
-url_izin="https://raw.githubusercontent.com/ryuvogsi/bokep/izin/main/ip"
+url_izin="https://raw.githubusercontent.com/ryuvogsi/izin/main/ip"
 client=$(curl -sS $url_izin | grep $IP | awk '{print $2}')
 exp=$(curl -sS $url_izin | grep $IP | awk '{print $3}')
 today=`date -d "0 days" +"%Y-%m-%d"`
