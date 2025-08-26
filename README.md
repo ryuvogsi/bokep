@@ -15,10 +15,9 @@
 - DEBIAN
 
 ### FITUR TAMBAHAN
-- Tambah Swap 2Gib
+- Tambah Swap 1Gib
 - Pemasangan yang dinamis
 - Auto lock ssh multi login
-- Auto lock xray multi login
 - Penambahan noobzvpns
 - Tuning profile pada server
 - Xray Core 
